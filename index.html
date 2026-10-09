@@ -316,7 +316,7 @@
       </div>
       <!-- Show this section when the cart contains products. -->
       <div class="cart__filled" id="cart-filled" hidden>
-        <ul class="cart__items" id="cart-items" aria-label="Items in your cart"></ul>
+        <ul class="cart__items" id="cart-items"></ul>
         <p class="cart__total">Order Total <strong id="cart-total">$0.00</strong></p>
         <p class="cart__delivery">
           <img src="./assets/images/icon-carbon-neutral.svg" alt="" width="21" height="20">
@@ -331,7 +331,7 @@
   <template id="cart-item-template">
     <li class="cart-item">
       <div class="cart-item__details">
-        <h3 class="cart-item__name"></h3>
+        <h3 class="cart-item__name">Product name</h3>
         <p class="cart-item__pricing">
           <span class="cart-item__quantity"></span>
           <span class="cart-item__unit-price"></span>
@@ -351,7 +351,7 @@
     <h2 id="confirmation-heading">Order Confirmed</h2>
     <p id="confirmation-message">We hope you enjoy your food!</p>
     <div class="order-confirmation__summary">
-      <ul id="confirmed-items" aria-label="Confirmed order items"></ul>
+      <ul id="confirmed-items"></ul>
       <p>Order Total <strong id="confirmed-total">$0.00</strong></p>
     </div>
     <button id="start-new-order" type="button">Start New Order</button>
@@ -359,10 +359,10 @@
 
   <template id="confirmed-item-template">
     <li class="confirmed-item">
-      <!-- JavaScript sets the thumbnail source before inserting this item. -->
-      <img class="confirmed-item__image" alt="" width="48" height="48">
+      <!-- JavaScript replaces the fallback thumbnail before inserting this item. -->
+      <img class="confirmed-item__image" src="./assets/images/image-waffle-thumbnail.jpg" alt="" width="48" height="48">
       <div class="confirmed-item__details">
-        <h3 class="confirmed-item__name"></h3>
+        <h3 class="confirmed-item__name">Product name</h3>
         <p>
           <span class="confirmed-item__quantity"></span>
           <span class="confirmed-item__unit-price"></span>
