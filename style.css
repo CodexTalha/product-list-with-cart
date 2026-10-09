@@ -1,0 +1,541 @@
+/* Keep hidden elements invisible even when their other styles use Flexbox. */
+[hidden] {
+  display: none !important;
+}
+
+/* Load the local font so the heading can use it. */
+@font-face {
+  font-family: "Red Hat Text";
+  src: url("./assets/fonts/RedHatText-VariableFont_wght.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+/* Component 1: The Desserts heading. */
+#desserts-heading {
+  margin: 0 0 1.5rem;
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: hsl(14, 65%, 9%);
+}
+
+/* Component 2: Product images. */
+.product-card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+/* Highlight products that have a quantity greater than zero. */
+.product-card.is-selected .product-card__image {
+  outline: 2px solid hsl(14, 86%, 42%);
+}
+
+/* Component 3: Position the Add to Cart button relative to its image. */
+.product-card__media {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.product-card__controls {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+}
+
+.add-to-cart {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 10rem;
+  min-height: 44px;
+  padding: 0.75rem;
+  border: 1px solid hsl(14, 25%, 72%);
+  border-radius: 999px;
+  background-color: white;
+  color: hsl(14, 65%, 9%);
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.add-to-cart:hover {
+  border-color: hsl(14, 86%, 42%);
+  color: hsl(14, 86%, 42%);
+}
+
+.add-to-cart:focus-visible {
+  outline: 2px solid hsl(14, 86%, 42%);
+  outline-offset: 3px;
+}
+
+/* Component 4: Limit the product area and arrange cards in a responsive grid. */
+.products {
+  width: 100%;
+  min-width: 0;
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 600px) {
+  .product-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .product-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Component 5: Product category, name, and price. */
+.product-card__details {
+  display: grid;
+  gap: 0.25rem;
+  font-family: "Red Hat Text", sans-serif;
+  line-height: 1.5;
+}
+
+/* Remove browser margins so the grid gap controls the spacing. */
+.product-card__category,
+.product-card__name,
+.product-card__price {
+  margin: 0;
+}
+
+.product-card__category {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: hsl(12, 20%, 44%);
+}
+
+.product-card__name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(14, 65%, 9%);
+}
+
+.product-card__price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: hsl(14, 86%, 42%);
+}
+
+/* Component 6: The empty cart panel. */
+.cart {
+  box-sizing: border-box;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background-color: white;
+  font-family: "Red Hat Text", sans-serif;
+  line-height: 1.5;
+}
+
+#cart-heading {
+  margin: 0 0 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: hsl(14, 86%, 42%);
+}
+
+.cart__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+
+.cart__empty img {
+  display: block;
+  width: 128px;
+  height: 128px;
+}
+
+.cart__empty p {
+  margin: 0;
+  color: hsl(12, 20%, 44%);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Keep cart announcements accessible without adding visible content or space. */
+#cart-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Component 7: Page background and responsive products/cart layout. */
+body {
+  margin: 0;
+  background-color: hsl(20, 50%, 98%);
+  color: hsl(14, 65%, 9%);
+  font-family: "Red Hat Text", sans-serif;
+  line-height: 1.5;
+}
+
+.shop {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1264px;
+  margin-inline: auto;
+  padding: 1.5rem;
+}
+
+/* Give the products roughly twice as much space as the cart on desktop. */
+@media (min-width: 1024px) {
+  .shop {
+    grid-template-columns: minmax(0, 2.08fr) minmax(0, 1fr);
+    padding-block: 5.5rem;
+  }
+}
+
+/* Component 8: Quantity selector for a selected product. */
+.quantity-control {
+  box-sizing: border-box;
+  width: 10rem;
+  min-height: 44px;
+  padding: 0 0.75rem;
+  border: 1px solid hsl(14, 86%, 42%);
+  border-radius: 999px;
+  background-color: hsl(14, 86%, 42%);
+  color: white;
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Only apply Flexbox when the HTML hidden attribute has been removed. */
+.quantity-control:not([hidden]) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quantity-control button {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid white;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.quantity-control button:hover {
+  background-color: white;
+}
+
+/* The supplied icons are white; darken them against the white hover background. */
+.quantity-control button:hover img {
+  filter: brightness(0);
+}
+
+.quantity-control button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 3px;
+}
+
+/* Component 9: Filled cart and its item rows. */
+.cart__items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid hsl(13, 31%, 94%);
+}
+
+.cart-item__details {
+  min-width: 0;
+}
+
+.cart-item__name {
+  margin: 0 0 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.cart-item__pricing {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  color: hsl(12, 20%, 44%);
+  font-size: 0.875rem;
+}
+
+.cart-item__quantity {
+  margin-right: 0.5rem;
+  color: hsl(14, 86%, 42%);
+  font-weight: 600;
+}
+
+.cart-item__remove {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid hsl(14, 25%, 72%);
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.cart-item__remove:hover {
+  border-color: hsl(14, 65%, 9%);
+}
+
+.cart-item__remove:hover img {
+  filter: brightness(0);
+}
+
+.cart__total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+}
+
+#cart-total {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.cart__delivery {
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: hsl(20, 50%, 98%);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.cart__delivery img {
+  display: inline-block;
+  margin-right: 0.25rem;
+  vertical-align: middle;
+}
+
+#confirm-order {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 1rem;
+  border: 0;
+  border-radius: 999px;
+  background-color: hsl(14, 86%, 42%);
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#confirm-order:hover {
+  background-color: hsl(14, 86%, 32%);
+}
+
+.cart-item__remove:focus-visible,
+#confirm-order:focus-visible {
+  outline: 2px solid hsl(14, 86%, 42%);
+  outline-offset: 3px;
+}
+
+/* Component 10: Order confirmation, shown as a bottom panel on mobile. */
+.order-confirmation {
+  box-sizing: border-box;
+  position: fixed;
+  inset: auto 0 0;
+  width: 100%;
+  max-width: none;
+  max-height: 90dvh;
+  margin: 0;
+  padding: 2.5rem 1.5rem 1.5rem;
+  overflow-y: auto;
+  border: 0;
+  border-radius: 0.75rem 0.75rem 0 0;
+  background-color: white;
+  color: hsl(14, 65%, 9%);
+  font-family: "Red Hat Text", sans-serif;
+  line-height: 1.5;
+}
+
+/* The browser creates this layer when the dialog opens with showModal(). */
+.order-confirmation::backdrop {
+  background-color: rgb(0 0 0 / 50%);
+}
+
+.order-confirmation > img {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+#confirmation-heading {
+  margin: 0 0 0.5rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+#confirmation-message {
+  margin: 0 0 2rem;
+  color: hsl(12, 20%, 44%);
+}
+
+.order-confirmation__summary {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: hsl(20, 50%, 98%);
+}
+
+#confirmed-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.confirmed-item {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid hsl(13, 31%, 94%);
+}
+
+.confirmed-item:first-child {
+  padding-top: 0;
+}
+
+.confirmed-item__image {
+  display: block;
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+.confirmed-item__name {
+  margin: 0 0 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.confirmed-item__details p {
+  margin: 0;
+  color: hsl(12, 20%, 44%);
+  font-size: 0.875rem;
+}
+
+.confirmed-item__quantity {
+  margin-right: 0.75rem;
+  color: hsl(14, 86%, 42%);
+  font-weight: 600;
+}
+
+.confirmed-item__subtotal {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.order-confirmation__summary > p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+  font-size: 0.875rem;
+}
+
+#confirmed-total {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+#start-new-order {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 1rem;
+  border: 0;
+  border-radius: 999px;
+  background-color: hsl(14, 86%, 42%);
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#start-new-order:hover {
+  background-color: hsl(14, 86%, 32%);
+}
+
+#start-new-order:focus-visible {
+  outline: 2px solid hsl(14, 86%, 42%);
+  outline-offset: 3px;
+}
+
+/* Center the dialog and round all corners on larger screens. */
+@media (min-width: 600px) {
+  .order-confirmation {
+    inset: 0;
+    width: calc(100% - 3rem);
+    max-width: 592px;
+    max-height: calc(100dvh - 3rem);
+    margin: auto;
+    padding: 2.5rem;
+    border-radius: 0.75rem;
+  }
+}
