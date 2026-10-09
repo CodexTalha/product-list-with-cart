@@ -24,7 +24,8 @@
 
 /* Component 1: The Desserts heading. */
 .desserts-heading {
-  margin: 0 0 1.5rem;
+  margin: 0;
+  margin-block-end: var(--space-panel);
   font-family: var(--font-body);
   font-size: clamp(2rem, 1.5rem + 2vw, 2.5rem);
   font-weight: 700;
@@ -99,7 +100,7 @@
 .product-list {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 1.5rem;
+  gap: var(--space-panel);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -153,7 +154,7 @@
 /* Component 6: The empty cart panel. */
 .cart {
   box-sizing: border-box;
-  padding: 1.5rem;
+  padding: var(--space-panel);
   border-radius: 0.75rem;
   background-color: var(--color-surface);
   font-family: var(--font-body);
@@ -402,15 +403,14 @@ body {
 /* Component 10: Order confirmation, shown as a bottom panel on mobile. */
 .order-confirmation {
   box-sizing: border-box;
-  /* Keep the modal anchored to the viewport; height limits and scrolling
-     keep its content reachable when zoomed. */
-  position: fixed;
+  /* showModal() supplies native modal positioning. Limit the height and
+     allow scrolling so all content stays reachable when zoomed. */
   inset: auto 0 0;
   inline-size: 100%;
   max-inline-size: none;
-  max-block-size: 90dvh;
+  max-block-size: calc(100dvh - 1rem);
   margin: 0;
-  padding: 2.5rem 1.5rem 1.5rem;
+  padding: clamp(1.5rem, 1rem + 3vw, 2.5rem) var(--space-panel) var(--space-panel);
   overflow-y: auto;
   border: 0;
   border-radius: 0.75rem 0.75rem 0 0;
@@ -445,7 +445,7 @@ body {
 
 .order-confirmation__summary {
   margin-block-end: 2rem;
-  padding: 1.5rem;
+  padding: var(--space-panel);
   border-radius: 0.5rem;
   background-color: var(--color-background);
 }
