@@ -13,7 +13,7 @@
 <body>
   <main class="shop">
     <section class="products" aria-labelledby="desserts-heading">
-      <h1 id="desserts-heading">Desserts</h1>
+      <h1 id="desserts-heading" class="desserts-heading">Desserts</h1>
       <ul class="product-list">
         <li class="product-list__item">
           <article class="product-card" data-product-id="waffle" aria-labelledby="waffle-name">
@@ -307,9 +307,9 @@
     </section>
 
     <aside class="cart" aria-labelledby="cart-heading">
-      <h2 id="cart-heading">Your Cart (<span id="cart-count">0</span>)</h2>
+      <h2 id="cart-heading" class="cart-heading">Your Cart (<span id="cart-count">0</span>)</h2>
       <!-- JavaScript can announce cart changes here for screen readers. -->
-      <p id="cart-status" role="status"></p>
+      <p id="cart-status" class="cart-status" role="status"></p>
       <div class="cart__empty" id="cart-empty">
         <img src="./assets/images/illustration-empty-cart.svg" alt="" width="128" height="128">
         <p>Your added items will appear here</p>
@@ -317,12 +317,12 @@
       <!-- Show this section when the cart contains products. -->
       <div class="cart__filled" id="cart-filled" hidden>
         <ul class="cart__items" id="cart-items"></ul>
-        <p class="cart__total">Order Total <strong id="cart-total">$0.00</strong></p>
+        <p class="cart__total">Order Total <strong id="cart-total" class="cart-total">$0.00</strong></p>
         <p class="cart__delivery">
           <img src="./assets/images/icon-carbon-neutral.svg" alt="" width="21" height="20">
           This is a <strong>carbon-neutral</strong> delivery
         </p>
-        <button id="confirm-order" type="button">Confirm Order</button>
+        <button id="confirm-order" class="confirm-order" type="button">Confirm Order</button>
       </div>
     </aside>
   </main>
@@ -348,13 +348,13 @@
   <!-- Closed by default; JavaScript will open this with showModal(). -->
   <dialog class="order-confirmation" id="order-confirmation" aria-labelledby="confirmation-heading" aria-describedby="confirmation-message">
     <img src="./assets/images/icon-order-confirmed.svg" alt="" width="48" height="48">
-    <h2 id="confirmation-heading">Order Confirmed</h2>
-    <p id="confirmation-message">We hope you enjoy your food!</p>
+    <h2 id="confirmation-heading" class="confirmation-heading">Order Confirmed</h2>
+    <p id="confirmation-message" class="confirmation-message">We hope you enjoy your food!</p>
     <div class="order-confirmation__summary">
-      <ul id="confirmed-items"></ul>
-      <p>Order Total <strong id="confirmed-total">$0.00</strong></p>
+      <ul id="confirmed-items" class="confirmed-items"></ul>
+      <p>Order Total <strong id="confirmed-total" class="confirmed-total">$0.00</strong></p>
     </div>
-    <button id="start-new-order" type="button">Start New Order</button>
+    <button id="start-new-order" class="start-new-order" type="button">Start New Order</button>
   </dialog>
 
   <template id="confirmed-item-template">
